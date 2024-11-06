@@ -1,0 +1,20 @@
+@startuml
+skinparam classAttributeIconSize 0
+    
+    class Duck {
+        +quack()
+        +swim()
+    }
+
+    class ElectronicDuck {
+        - _on : boolean = false
+        +quack()
+        +swim()
+        +turnOn()
+        +turnOff()
+    }
+
+    Duck <|-- ElectronicDuck
+
+
+@enduml

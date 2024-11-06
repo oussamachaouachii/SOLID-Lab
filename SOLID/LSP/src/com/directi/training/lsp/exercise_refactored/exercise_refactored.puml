@@ -1,0 +1,32 @@
+@startuml
+title Duck exercise solution
+skinparam classAttributeIconSize 0
+
+abstract class Duck {
+    +quack()
+    +swim()
+}
+
+class RealDuck extends Duck {
+    +quack()
+    +swim()
+}
+
+class ElectronicDuck extends Duck {
+    -isOn : boolean
+    +turnOn()
+    +turnOff()
+    +quack()
+    +swim()
+}
+
+class Pool {
+    +run()
+    +quack(Duck...)
+    +swim(Duck...)
+}
+
+
+Pool --> Duck : uses
+
+@enduml
