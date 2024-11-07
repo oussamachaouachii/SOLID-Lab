@@ -1,0 +1,30 @@
+@startuml ocp_ref
+abstract class Resource{
+    + allocate()
+    + free(resourceId: int)
+    }
+class TimeSlotResource{
+    +allocate()
+    + free(resourceId:int)
+    +findFreeTimeSlot() 
+    + markTimeSlotBusy(resourceId:int)
+    + markTimeSlotFree(resourceId:int)
+    
+}
+class SpaceSlotResource{
+    + allocate()
+    + free(resourceId: int)
+     +findFreeSpaceSlot() 
+    + markSpaceSlotBusy(resourceId:int)
+    + markSpaceSlotFree(resourceId:int)
+}
+class ResourceAllocator{
+    - INVALID_RESOURCE_ID :int
+    - resources:Map<String,Resource>
+    + allocate(resourceType: String)
+    + free(resourceType: String, resourceId: int)
+}
+Resource <-- TimeSlotResource
+Resource <-- SpaceSlotResource
+ResourceAllocator -- Resource
+@enduml
