@@ -10,17 +10,21 @@ import java.io.InputStreamReader;
 import java.net.URL;
 import java.util.Base64;
 
-public class EncodingModule
-{
-    public void encodeWithFiles() throws IOException
-    {
+public class EncodingModule {
+    private final DatabaseInterface db;
+
+    public EncodingModule(DatabaseInterface database) {
+        this.db = database;
+    }
+
+    public void encodeWithFiles() throws IOException {
         BufferedReader reader = null;
         BufferedWriter writer = null;
         try {
             reader = new BufferedReader(
-                new FileReader("DIP/src/com/directi/training/dip/exercise/beforeEncryption.txt"));
+                    new FileReader("DIP/src/com/directi/training/dip/exercise/beforeEncryption.txt"));
             writer = new BufferedWriter(
-                new FileWriter("DIP/src/com/directi/training/dip/exercise/afterEncryption.txt"));
+                    new FileWriter("DIP/src/com/directi/training/dip/exercise/afterEncryption.txt"));
             String aLine;
             while ((aLine = reader.readLine()) != null) {
                 String encodedLine = Base64.getEncoder().encodeToString(aLine.getBytes());
@@ -36,8 +40,7 @@ public class EncodingModule
         }
     }
 
-    public void encodeBasedOnNetworkAndDatabase() throws IOException
-    {
+    public void encodeBasedOnNetworkAndDatabase() throws IOException {
         URL url;
         url = new URL("http", "myfirstappwith.appspot.com", "/index.html");
         InputStream in;
@@ -52,8 +55,7 @@ public class EncodingModule
         }
         String inputString = inputString1.toString();
         String encodedString = Base64.getEncoder().encodeToString(inputString.getBytes());
-        MyDatabase database = new MyDatabase();
-        database.write(encodedString);
+        // MyDatabase database = new MyDatabase();
+        db.write(encodedString);
     }
 }
-
