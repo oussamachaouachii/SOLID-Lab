@@ -1,0 +1,12 @@
+@startuml OCP 
+class ResourceAllocator{
+    - INVALID_RESOURCE_ID : int 
+    + allocate (resourceType: ResourceType) 
+    + free (resourceType: ResourceType, resourceId:int)
+}
+enum ResouceType {
+    TIME_SLOT
+    SPACE_SLOT
+}
+
+@enduml
